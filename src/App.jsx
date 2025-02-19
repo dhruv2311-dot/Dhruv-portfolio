@@ -98,7 +98,7 @@ function App() {
                 View Projects
               </motion.a>
               <motion.a
-                href="https://pdf.ac/3BNhzW"
+                href="https://res.cloudinary.com/dtkzxbcjx/image/upload/v1739946687/resume1_nge8cz.pdf"
                 download
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
