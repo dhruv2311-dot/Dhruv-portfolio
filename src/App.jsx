@@ -3,10 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Moon, Sun, Github, Linkedin, Mail, Download, ExternalLink, Code, Database, Figma, GitBranch } from 'lucide-react';
 import { Link } from 'react-scroll';
 import image from './assets/image.jpg';
-import eventura from './assets/eventura.png';
-import purple from './assets/purple.png';
-import pharmeasy from './assets/pharmeasy.png';
-import hireavilla from './assets/hireavilla.png';
+
 function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -499,7 +496,7 @@ const projects = [
     title: 'Eventura',
     description: 'Event management platform with real-time updates and interactive features.',
     tech: ['React', 'Node.js', 'MongoDB', 'express'],
-    image: {eventura},
+    image: "https://res.cloudinary.com/dtkzxbcjx/image/upload/v1739943406/eventura_tuntzx.png",
     demo: 'https://eventura-23.netlify.app/',
     github: 'https://github.com/dhruv2311-dot/eventura-',
     docs: 'https://documenter.getpostman.com/view/39189509/2sAYX3s4Dc'
@@ -508,7 +505,7 @@ const projects = [
     title: 'Purple Clone',
     description: 'E-commerce platform with modern UI and seamless shopping experience.',
     tech: ['HTML', 'CSS', 'JAVASCRIPT'],
-    image: {purple},
+    image: "https://res.cloudinary.com/dtkzxbcjx/image/upload/v1739943602/bgrat7sxisqwumu4x1vn.png",
     demo: 'https://purple21.netlify.app/',
     github: 'https://github.com/dhruv2311-dot/PURPLE'
   },
@@ -516,7 +513,7 @@ const projects = [
     title: 'PharmEasy Clone',
     description: 'Online pharmacy platform with medicine delivery system.',
     tech: ['HTML', 'CSS', 'JAVASCRIPT'],
-    image: {pharmeasy},
+    image: "https://res.cloudinary.com/dtkzxbcjx/image/upload/v1739943561/y4vnpuulvuibf86l0dj9.png",
     demo: 'https://bespoke-blini-7c10e3.netlify.app/',
     github: 'https://github.com/dhruv2311-dot/pharmeasy'
   },
@@ -524,7 +521,7 @@ const projects = [
     title: 'HireAVilla Clone',
     description: 'Property booking platform with advanced filtering and booking system.',
     tech: ['HTML', 'CSS', 'JAVASCRIPT'],
-    image: {hireavilla},
+    image: "https://res.cloudinary.com/dtkzxbcjx/image/upload/v1739943420/hireavilla_ag5gso.png",
     demo: 'https://hireavilla12.netlify.app/',
     github: 'https://github.com/dhruv2311-dot/HIREAVILLA'
   }
