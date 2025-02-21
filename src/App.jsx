@@ -502,6 +502,33 @@ const projects = [
     docs: 'https://documenter.getpostman.com/view/39189509/2sAYX3s4Dc'
   },
   {
+    title: 'Youtube',
+    description: 'A dynamic YouTube clone featuring real-time video updates, interactive UI, and seamless streaming. Built with React and Node.js, it integrates a custom YouTube API for personalized content delivery. ',
+    tech: ['React', 'Node.js','express'],
+    image: "https://res.cloudinary.com/dtkzxbcjx/image/upload/v1740156747/Screenshot_2025-02-21_221308_uqsfq2.png",
+    demo: 'https://youtube-api-lomc.vercel.app/',
+    github: 'https://github.com/dhruv2311-dot/Youtube-API',
+    
+  },
+  {
+    title: 'Spotify',
+    description: 'A sleek Spotify clone built using React with a modular, component-based architecture. It offers seamless music playback, dynamic UI updates, and an interactive user experience. 🚀🎵',
+    tech: ['React', 'javascript','Tailwindcss'],
+    image: "https://res.cloudinary.com/dtkzxbcjx/image/upload/v1740156966/igvbvpgmgyzkbrthcdma.png",
+    demo: 'https://spotify-react-component.vercel.app/',
+    github: 'https://github.com/dhruv2311-dot/spotify-react-component',
+    
+  },
+  {
+    title: 'Tic-Tac-Toe',
+    description: 'A classic Tic Tac Toe game developed using React, featuring a responsive UI, smooth gameplay, and dynamic state management for an engaging experience. 🎮✨',
+    tech: ['React', 'javascript','Tailwindcss'],
+    image: "https://res.cloudinary.com/dtkzxbcjx/image/upload/v1740157368/gtsplesiovqz4emqthn2.png",
+    demo: 'https://tic-tac-toe-sandy-two.vercel.app/',
+    github: 'https://github.com/dhruv2311-dot/Tic-Tac-Toe',
+    
+  },
+  {
     title: 'Purple Clone',
     description: 'E-commerce platform with modern UI and seamless shopping experience.',
     tech: ['HTML', 'CSS', 'JAVASCRIPT'],
