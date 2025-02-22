@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Moon, Sun, Github, Linkedin, Mail, Download, ExternalLink, Code, Database, Figma, GitBranch } from 'lucide-react';
 import { Link } from 'react-scroll';
-import image from './assets/image.jpg';
+import image from './assets/dhruv.jpg';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -27,6 +27,7 @@ function App() {
     { name: 'About', to: 'about' },
     { name: 'Projects', to: 'projects' },
     { name: 'Skills', to: 'skills' },
+    { name: 'Figma Projects', to: 'figma-projects' },
     { name: 'Education', to: 'education' },
     { name: 'References', to: 'references' },
     { name: 'Contact', to: 'contact' },
@@ -234,7 +235,58 @@ function App() {
           </div>
         </div>
       </section>
-
+      <section id="figma-projects" className="py-20 bg-gray-50 dark:bg-gray-900">
+        <div className="container mx-auto px-4">
+          <motion.h2
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-3xl font-bold text-center mb-12"
+          >
+            Figma Projects
+          </motion.h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+            {figmaProjects.map((project, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="card-hover rounded-lg overflow-hidden bg-white dark:bg-gray-800 shadow-lg"
+              >
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4">{project.description}</p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.tools.map((tool, i) => (
+                      <span
+                        key={i}
+                        className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-700 rounded-full"
+                      >
+                        {tool}
+                      </span>
+                    ))}
+                  </div>
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center text-accent hover:underline"
+                  >
+                    <Figma size={16} className="mr-1" /> View in Figma
+                  </a>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
       {/* Skills Section */}
       <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
@@ -553,7 +605,30 @@ const projects = [
     github: 'https://github.com/dhruv2311-dot/HIREAVILLA'
   }
 ];
-
+const figmaProjects = [
+  {
+    title: 'Eventura',
+    description: 'A clean and modern dashboard interface design with white mode support.',
+    tools: ['Figma', 'Auto Layout', 'Components', 'Variants'],
+    image: 'https://res.cloudinary.com/dtkzxbcjx/image/upload/v1739943406/eventura_tuntzx.png',
+    link: 'https://www.figma.com/design/VTpYgGhHaIuRfob33itg2p/codinggita?node-id=382-557&t=vtIPVwzy8GVvCr3a-1'
+  },
+  {
+    title: 'Furnishly',
+    description: 'Furnishly features a sleek and intuitive interface with a focus on user experience. The design showcases high-quality furniture with well-organized categories, smooth navigation, and a visually appealing layout. With a minimalist approach, it ensures a seamless shopping experience, incorporating detailed product views, price filters, and responsive elements for accessibility across devices. The elegant typography and balanced white space enhance readability, making browsing effortless and engaging.',
+    tools: ['Figma', 'Auto Layout', 'Components', 'Variants'],
+    image: 'https://res.cloudinary.com/dtkzxbcjx/image/upload/v1740253407/j0jnuta7tknmxkfrplka.jpg',
+    link: 'https://www.figma.com/design/VTpYgGhHaIuRfob33itg2p/codinggita?node-id=124-532&t=vtIPVwzy8GVvCr3a-1'
+  },
+  {
+    title: 'codinggita',
+    description: 'CodingGita is a well-structured and visually appealing website page design focused on delivering a seamless user experience. With a modern and intuitive layout, it ensures easy navigation and accessibility. The design incorporates a balanced combination of typography, white space, and interactive elements, making it both engaging and functional. Whether for learning resources, coding tutorials, or tech-related content, CodingGita design enhances readability and usability, creating an efficient and smooth browsing experience.',
+    tools: ['Figma', 'Auto Layout', 'Components', 'Variants'],
+    image: 'https://res.cloudinary.com/dtkzxbcjx/image/upload/v1740253761/wfdtwsnrsexc4xkkumvw.png',
+    link: 'https://www.figma.com/design/VTpYgGhHaIuRfob33itg2p/codinggita?node-id=138-5416&t=vtIPVwzy8GVvCr3a-1'
+  },
+ 
+];
 const skillCategories = [
   {
     name: 'Frontend',
