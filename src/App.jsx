@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Moon, Sun, Github, Linkedin, Mail, Download, ExternalLink, Code, Database, Figma, GitBranch } from 'lucide-react';
 import { Link } from 'react-scroll';
-import image from './assets/dhruv.jpg';
+import image from './assets/dhruv.JPG';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
