@@ -619,7 +619,7 @@ const projects = [
     demo: 'https://eventura-23.netlify.app/',
     github: 'https://github.com/dhruv2311-dot/eventura-',
     docs: 'https://documenter.getpostman.com/view/39189509/2sAYX3s4Dc',
-    videoId: '1FiO-1234567890' // Replace with your actual Google Drive file ID
+    videoId: '12ZT1sU_Z6EKmnUcxC1f6Leg-DSP0OT5z' // Replace with your actual Google Drive file ID
   },
   {
     title: 'Youtube',
