@@ -110,7 +110,7 @@ function App() {
                 View Projects
               </motion.a>
               <motion.a
-                href="https://res.cloudinary.com/dtkzxbcjx/image/upload/v1739946687/resume1_nge8cz.pdf"
+                href="file:///C:/Users/dhruv/Downloads/resume1.pdf"
                 download
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -756,7 +756,7 @@ const keySubjects = [
 ];
 
 export default App;
-// import { useState, useEffect } from 'react';
+
 // import { motion, AnimatePresence } from 'framer-motion';
 // import { Moon, Sun, Github, Linkedin, Mail, Download, ExternalLink, Code, Database, Figma, GitBranch } from 'lucide-react';
 // import { Link } from 'react-scroll';
