@@ -649,7 +649,7 @@ const projects = [
     videoId: '1FiO-1234567893' // Replace with your actual Google Drive file ID
   },
   {
-    title: 'Purple Clone',
+    title: 'Purple',
     description: 'E-commerce platform with modern UI and seamless shopping experience.',
     tech: ['HTML', 'CSS', 'JAVASCRIPT'],
     image: "https://res.cloudinary.com/dtkzxbcjx/image/upload/v1739943602/bgrat7sxisqwumu4x1vn.png",
@@ -658,7 +658,7 @@ const projects = [
     videoId: '1FiO-1234567894' // Replace with your actual Google Drive file ID
   },
   {
-    title: 'PharmEasy Clone',
+    title: 'PharmEasy',
     description: 'Online pharmacy platform with medicine delivery system.',
     tech: ['HTML', 'CSS', 'JAVASCRIPT'],
     image: "https://res.cloudinary.com/dtkzxbcjx/image/upload/v1739943561/y4vnpuulvuibf86l0dj9.png",
@@ -667,7 +667,7 @@ const projects = [
     videoId: '1FiO-1234567895' // Replace with your actual Google Drive file ID
   },
   {
-    title: 'HireAVilla Clone',
+    title: 'HireAVilla',
     description: 'Property booking platform with advanced filtering and booking system.',
     tech: ['HTML', 'CSS', 'JAVASCRIPT'],
     image: "https://res.cloudinary.com/dtkzxbcjx/image/upload/v1739943420/hireavilla_ag5gso.png",
