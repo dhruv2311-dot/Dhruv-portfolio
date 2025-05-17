@@ -175,10 +175,11 @@ const filteredProjects = projects.filter((project) => {
               className="md:w-1/2"
             >
               <img
-                src={image}
-                alt="Profile"
-                className="rounded-lg shadow-xl"
-              />
+  src={image}
+  alt="Profile"
+  className="rounded-full shadow-xl object-cover mx-auto"
+  style={{ width: "220px", height: "220px" }}
+/>
             </motion.div>
           </div>
         </div>
@@ -656,6 +657,7 @@ const projects = [
     tech: ['React', 'Node.js', 'MongoDB', 'express'],
     image: "https://res.cloudinary.com/dtkzxbcjx/image/upload/v1739943406/eventura_tuntzx.png",
     demo: 'https://eventura-23.netlify.app/',
+  
     github: 'https://github.com/dhruv2311-dot/eventura-',
     docs: 'https://documenter.getpostman.com/view/39189509/2sAYX3s4Dc',
     videoId: '12ZT1sU_Z6EKmnUcxC1f6Leg-DSP0OT5z' // Replace with your actual Google Drive file ID
