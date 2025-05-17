@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
+import gsap from "gsap";
 import { motion, AnimatePresence } from 'framer-motion';
 // ...existing code...
 import { Moon, Sun, Github, Linkedin, Mail, Download, ExternalLink, Code, Database, Figma, GitBranch, Play, X, Award } from 'lucide-react';
@@ -7,6 +9,22 @@ import { Link } from 'react-scroll';
 import image from './assets/dhruv1.jpg';
 
 function App() {
+  const aboutRef = useRef(null);
+  const certificatesRef = useRef(null);
+  const projectsRef = useRef(null);
+  const skillsRef = useRef(null);
+  const educationRef = useRef(null);
+  const referencesRef = useRef(null);
+  const contactRef = useRef(null);
+ useEffect(() => {
+    gsap.from(aboutRef.current, { opacity: 0, y: 60, duration: 1, ease: "power3.out" });
+    gsap.from(certificatesRef.current, { opacity: 0, y: 60, duration: 1, delay: 0.2, ease: "power3.out" });
+    gsap.from(projectsRef.current, { opacity: 0, y: 60, duration: 1, delay: 0.4, ease: "power3.out" });
+    gsap.from(skillsRef.current, { opacity: 0, y: 60, duration: 1, delay: 0.6, ease: "power3.out" });
+    gsap.from(educationRef.current, { opacity: 0, y: 60, duration: 1, delay: 0.8, ease: "power3.out" });
+    gsap.from(referencesRef.current, { opacity: 0, y: 60, duration: 1, delay: 1.0, ease: "power3.out" });
+    gsap.from(contactRef.current, { opacity: 0, y: 60, duration: 1, delay: 1.2, ease: "power3.out" });
+  }, []);
   const [darkMode, setDarkMode] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeVideo, setActiveVideo] = useState(null);
@@ -136,7 +154,7 @@ const filteredProjects = projects.filter((project) => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-gray-50 dark:bg-gray-900">
+      <section ref={aboutRef} id="about" className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center gap-12">
             <motion.div
@@ -185,7 +203,7 @@ const filteredProjects = projects.filter((project) => {
         </div>
       </section>
 {/* Certificates Section */}
-      <section id="certificates" className="py-20 bg-gray-50 dark:bg-gray-900">
+      <section id="certificates" ref={certificatesRef} className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <motion.h2
             initial={{ opacity: 0 }}
@@ -232,7 +250,7 @@ const filteredProjects = projects.filter((project) => {
 
       {/* Pr
       {/* My Projects Section */}
-      <section id="projects" className="py-20">
+      <section ref={projectsRef} id="projects" className="py-20">
         <div className="container mx-auto px-4">
           <motion.h2
             initial={{ opacity: 0 }}
@@ -382,7 +400,7 @@ const filteredProjects = projects.filter((project) => {
 
       
       {/* Skills Section */}
-      <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-900">
+      <section ref={skillsRef} id="skills" className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <motion.h2
             initial={{ opacity: 0 }}
@@ -451,7 +469,7 @@ const filteredProjects = projects.filter((project) => {
       </section>
 
       {/* Education Section */}
-      <section id="education" className="py-20">
+      <section ref={educationRef} id="education" className="py-20">
         <div className="container mx-auto px-4">
           <motion.h2
             initial={{ opacity: 0 }}
@@ -502,7 +520,7 @@ const filteredProjects = projects.filter((project) => {
       </section>
 
       {/* References Section */}
-      <section id="references" className="py-20 bg-gray-50 dark:bg-gray-900">
+      <section ref={referencesRef} id="references" className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <motion.h2
             initial={{ opacity: 0 }}
@@ -531,7 +549,7 @@ const filteredProjects = projects.filter((project) => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20">
+      <section ref={referencesRef} id="contact" className="py-20">
         <div className="container mx-auto px-4">
           <motion.h2
             initial={{ opacity: 0 }}
