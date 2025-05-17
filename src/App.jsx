@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Moon, Sun, Github, Linkedin, Mail, Download, ExternalLink, Code, Database, Figma, GitBranch, Play, X } from 'lucide-react';
+// ...existing code...
+import { Moon, Sun, Github, Linkedin, Mail, Download, ExternalLink, Code, Database, Figma, GitBranch, Play, X, Award } from 'lucide-react';
+// ...existing code...
 import { Link } from 'react-scroll';
 import image from './assets/dhruv1.jpg';
 
