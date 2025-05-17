@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useRef, useEffect } from 'react';
+import { useRef} from 'react';
 import gsap from "gsap";
 import { motion, AnimatePresence } from 'framer-motion';
 // ...existing code...
