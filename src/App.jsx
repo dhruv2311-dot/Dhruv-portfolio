@@ -48,7 +48,8 @@ const filteredProjects = projects.filter((project) => {
     { name: 'About', to: 'about' },
     { name: 'Projects', to: 'projects' },
     { name: 'Skills', to: 'skills' },
-    { name: 'Figma Projects', to: 'figma-projects' },
+    { name: 'Certificates', to: 'certificates' },
+  
     { name: 'Education', to: 'education' },
     { name: 'References', to: 'references' },
     { name: 'Contact', to: 'contact' },
@@ -378,59 +379,7 @@ const filteredProjects = projects.filter((project) => {
         )}
       </AnimatePresence>
 
-      <section id="figma-projects" className="py-20 bg-gray-50 dark:bg-gray-900">
-        <div className="container mx-auto px-4">
-          <motion.h2
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold text-center mb-12"
-          >
-            Figma Projects
-          </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-            {figmaProjects.map((project, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="card-hover rounded-lg overflow-hidden bg-white dark:bg-gray-800 shadow-lg"
-              >
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-4">{project.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tools.map((tool, i) => (
-                      <span
-                        key={i}
-                        className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-700 rounded-full"
-                      >
-                        {tool}
-                      </span>
-                    ))}
-                  </div>
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center text-accent hover:underline"
-                  >
-                    <Figma size={16} className="mr-1" /> View in Figma
-                  </a>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
+      
       {/* Skills Section */}
       <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
