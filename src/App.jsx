@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Moon, Sun, Github, Linkedin, Mail, Download, ExternalLink, Code, Database, Figma, GitBranch, Play, X, Award, Eye } from 'lucide-react';
+import { Moon, Sun, Github, Linkedin, Mail, Download, ExternalLink, Code, Database, Figma, GitBranch, Play, X } from 'lucide-react';
 import { Link } from 'react-scroll';
-import { projects, figmaProjects, certificates, skillCategories, skillLevels, keySubjects } from './data';
+import image from './assets/dhruv1.jpg';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeVideo, setActiveVideo] = useState(null);
-  const [activeCertificate, setActiveCertificate] = useState(null);
-  const [activeProjectTab, setActiveProjectTab] = useState('all');
 
   useEffect(() => {
     const isDark = localStorage.getItem('darkMode') === 'true';
@@ -35,39 +33,12 @@ function App() {
     document.body.style.overflow = 'auto';
   };
 
-  const openCertificate = (certificate) => {
-    setActiveCertificate(certificate);
-    document.body.style.overflow = 'hidden';
-  };
-
-  const closeCertificate = () => {
-    setActiveCertificate(null);
-    document.body.style.overflow = 'auto';
-  };
-
-  const filteredProjects = () => {
-    // Combine all projects
-    const allProjects = [...projects, ...figmaProjects];
-    
-    if (activeProjectTab === 'all') return allProjects;
-    if (activeProjectTab === 'react') return allProjects.filter(p => p.tech?.includes('React') || p.tools?.includes('React'));
-    if (activeProjectTab === 'html-css') return allProjects.filter(p => p.tech?.includes('HTML') || p.tech?.includes('CSS'));
-    if (activeProjectTab === 'mern') return allProjects.filter(p => 
-      p.tech?.includes('MongoDB') && p.tech?.includes('Express') && 
-      p.tech?.includes('React') && p.tech?.includes('Node.js')
-    );
-    if (activeProjectTab === 'backend-api') return allProjects.filter(p => p.tech?.includes('Node.js') || p.tech?.includes('express'));
-    if (activeProjectTab === 'figma') return allProjects.filter(p => p.tools?.includes('Figma'));
-    
-    return allProjects;
-  };
-
   const navItems = [
     { name: 'Home', to: 'home' },
     { name: 'About', to: 'about' },
     { name: 'Projects', to: 'projects' },
     { name: 'Skills', to: 'skills' },
-    { name: 'Certificates', to: 'certificates' },
+    { name: 'Figma Projects', to: 'figma-projects' },
     { name: 'Education', to: 'education' },
     { name: 'References', to: 'references' },
     { name: 'Contact', to: 'contact' },
@@ -139,7 +110,7 @@ function App() {
                 View Projects
               </motion.a>
               <motion.a
-                href="https://res.cloudinary.com/dtkzxbcjx/image/upload/v1739946687/resume1_nge8cz.pdf"
+                href="file:///C:/Users/dhruv/Downloads/resume1.pdf"
                 download
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -193,7 +164,7 @@ function App() {
               className="md:w-1/2"
             >
               <img
-                src="https://res.cloudinary.com/dtkzxbcjx/image/upload/v1739943406/eventura_tuntzx.png"
+                src={image}
                 alt="Profile"
                 className="rounded-lg shadow-xl"
               />
@@ -209,128 +180,77 @@ function App() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-3xl font-bold text-center mb-8"
+            className="text-3xl font-bold text-center mb-12"
           >
-            My Projects
+            Featured Projects
           </motion.h2>
-
-          {/* Project Category Tabs */}
-          <div className="flex flex-wrap justify-center mb-12 gap-2">
-            {[
-              { id: 'all', label: 'All Projects' },
-              { id: 'react', label: 'React Projects' },
-              { id: 'html-css', label: 'HTML/CSS Projects' },
-              { id: 'mern', label: 'MERN Projects' },
-              { id: 'backend-api', label: 'Backend API Projects' },
-              { id: 'figma', label: 'Figma Projects' }
-            ].map((tab) => (
-              <motion.button
-                key={tab.id}
-                onClick={() => setActiveProjectTab(tab.id)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                  activeProjectTab === tab.id 
-                    ? 'bg-accent text-white' 
-                    : 'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700'
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {tab.label}
-              </motion.button>
-            ))}
-          </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-            <AnimatePresence mode="wait">
-              {filteredProjects().map((project, index) => (
-                <motion.div
-                  key={`${project.title}-${index}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="card-hover rounded-lg overflow-hidden bg-white dark:bg-gray-800 shadow-lg"
-                >
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-48 object-cover"
-                  />
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                    <p className="text-gray-600 dark:text-gray-300 mb-4">{project.description}</p>
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.tech && project.tech.map((tech, i) => (
-                        <span
-                          key={i}
-                          className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-700 rounded-full"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                      {project.tools && project.tools.map((tool, i) => (
-                        <span
-                          key={i}
-                          className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-700 rounded-full"
-                        >
-                          {tool}
-                        </span>
-                      ))}
-                    </div>
-                    <div className="flex flex-wrap space-x-4">
-                      {project.demo && (
-                        <a
-                          href={project.demo}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center text-accent hover:underline"
-                        >
-                          <ExternalLink size={16} className="mr-1" /> Demo
-                        </a>
-                      )}
-                      {project.github && (
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center text-accent hover:underline"
-                        >
-                          <Github size={16} className="mr-1" /> Code
-                        </a>
-                      )}
-                      {project.docs && (
-                        <a
-                          href={project.docs}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center text-accent hover:underline"
-                        >
-                          <Code size={16} className="mr-1" /> API Docs
-                        </a>
-                      )}
-                      {project.link && (
-                        <a
-                          href={project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center text-accent hover:underline"
-                        >
-                          <Figma size={16} className="mr-1" /> View in Figma
-                        </a>
-                      )}
-                      {project.videoId && (
-                        <button
-                          onClick={() => openVideo(project.videoId)}
-                          className="flex items-center text-accent hover:underline"
-                        >
-                          <Play size={16} className="mr-1" /> Demo Video
-                        </button>
-                      )}
-                    </div>
+            {projects.map((project, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="card-hover rounded-lg overflow-hidden bg-white dark:bg-gray-800 shadow-lg"
+              >
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4">{project.description}</p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.tech.map((tech, i) => (
+                      <span
+                        key={i}
+                        className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-700 rounded-full"
+                      >
+                        {tech}
+                      </span>
+                    ))}
                   </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
+                  <div className="flex flex-wrap space-x-4">
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center text-accent hover:underline"
+                    >
+                      <ExternalLink size={16} className="mr-1" /> Demo
+                    </a>
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center text-accent hover:underline"
+                    >
+                      <Github size={16} className="mr-1" /> Code
+                    </a>
+                    {project.docs && (
+                      <a
+                        href={project.docs}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center text-accent hover:underline"
+                      >
+                        <Code size={16} className="mr-1" /> API Docs
+                      </a>
+                    )}
+                    {project.videoId && (
+                      <button
+                        onClick={() => openVideo(project.videoId)}
+                        className="flex items-center text-accent hover:underline"
+                      >
+                        <Play size={16} className="mr-1" /> Demo Video
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -371,40 +291,68 @@ function App() {
         )}
       </AnimatePresence>
 
-      {/* Certificate Modal */}
-      <AnimatePresence>
-        {activeCertificate && (
-          <motion.div
+      <section id="figma-projects" className="py-20 bg-gray-50 dark:bg-gray-900">
+        <div className="container mx-auto px-4">
+          <motion.h2
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
-            onClick={closeCertificate}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-3xl font-bold text-center mb-12"
           >
-            <motion.div
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.9 }}
-              className="relative w-full max-w-4xl bg-white dark:bg-gray-800 rounded-lg overflow-hidden"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="w-full">
-                <img
-                  src={activeCertificate.fullImage || activeCertificate.image}
-                  alt={activeCertificate.title}
-                  className="w-full"
-                />
-              </div>
-              <button
-                onClick={closeCertificate}
-                className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors"
+            Figma Projects
+          </motion.h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+            {figmaProjects.map((project, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="card-hover rounded-lg overflow-hidden bg-white dark:bg-gray-800 shadow-lg"
               >
-                <X size={20} />
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4">{project.description}</p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.tools.map((tool, i) => (
+                      <span
+                        key={i}
+                        className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-700 rounded-full"
+                      >
+                        {tool}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex flex-wrap space-x-4">
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center text-accent hover:underline"
+                    >
+                      <Figma size={16} className="mr-1" /> View in Figma
+                    </a>
+                    {project.videoId && (
+                      <button
+                        onClick={() => openVideo(project.videoId)}
+                        className="flex items-center text-accent hover:underline"
+                      >
+                        <Play size={16} className="mr-1" /> Demo Video
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Skills Section */}
       <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-900">
@@ -475,76 +423,8 @@ function App() {
         </div>
       </section>
 
-      {/* Certificates Section */}
-      <section id="certificates" className="py-20">
-        <div className="container mx-auto px-4">
-          <motion.h2
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold text-center mb-12"
-          >
-            Certificates & Achievements
-          </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {certificates.map((certificate, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="card-hover rounded-lg overflow-hidden bg-white dark:bg-gray-800 shadow-lg"
-              >
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={certificate.image}
-                    alt={certificate.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute top-3 right-3">
-                    <span className="bg-accent text-white text-xs font-semibold px-3 py-1 rounded-full">
-                      {certificate.date}
-                    </span>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-1">{certificate.title}</h3>
-                  <p className="text-accent mb-3">{certificate.issuer}</p>
-                  <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm">
-                    {certificate.description}
-                  </p>
-                  <div className="mb-4">
-                    <h4 className="text-sm font-semibold mb-2">Skills Covered:</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {certificate.skills.map((skill, skillIndex) => (
-                        <span
-                          key={skillIndex}
-                          className="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 rounded-full"
-                        >
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <motion.button
-                    onClick={() => openCertificate(certificate)}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="inline-flex items-center text-sm font-medium text-white bg-accent px-4 py-2 rounded-lg hover:bg-opacity-90 transition-colors"
-                  >
-                    <Eye size={16} className="mr-2" />
-                    View Certificate
-                  </motion.button>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Education Section */}
-      <section id="education" className="py-20 bg-gray-50 dark:bg-gray-900">
+      <section id="education" className="py-20">
         <div className="container mx-auto px-4">
           <motion.h2
             initial={{ opacity: 0 }}
@@ -595,7 +475,7 @@ function App() {
       </section>
 
       {/* References Section */}
-      <section id="references" className="py-20">
+      <section id="references" className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <motion.h2
             initial={{ opacity: 0 }}
@@ -624,7 +504,7 @@ function App() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-900">
+      <section id="contact" className="py-20">
         <div className="container mx-auto px-4">
           <motion.h2
             initial={{ opacity: 0 }}
@@ -647,6 +527,9 @@ function App() {
                   <p className="flex items-center space-x-3">
                     <Mail className="text-accent" />
                     <span>dhruv.sonagra.cg@gmail.com</span>
+                  </p>
+                  <p className="flex items-center space-x-3">
+                   
                   </p>
                 </div>
                 <div className="flex space-x-4">
@@ -727,9 +610,7 @@ function App() {
   );
 }
 
-
-
-export const projects = [
+const projects = [
   {
     title: 'Eventura',
     description: 'Event management platform with real-time updates and interactive features.',
@@ -738,7 +619,7 @@ export const projects = [
     demo: 'https://eventura-23.netlify.app/',
     github: 'https://github.com/dhruv2311-dot/eventura-',
     docs: 'https://documenter.getpostman.com/view/39189509/2sAYX3s4Dc',
-    videoId: '12ZT1sU_Z6EKmnUcxC1f6Leg-DSP0OT5z'
+    videoId: '12ZT1sU_Z6EKmnUcxC1f6Leg-DSP0OT5z' // Replace with your actual Google Drive file ID
   },
   {
     title: 'Youtube',
@@ -747,7 +628,7 @@ export const projects = [
     image: "https://res.cloudinary.com/dtkzxbcjx/image/upload/v1740156747/Screenshot_2025-02-21_221308_uqsfq2.png",
     demo: 'https://youtube-api-lomc.vercel.app/',
     github: 'https://github.com/dhruv2311-dot/Youtube-API',
-    videoId: '1FiO-1234567891'
+    videoId: '1FiO-1234567891' // Replace with your actual Google Drive file ID
   },
   {
     title: 'Spotify',
@@ -756,7 +637,7 @@ export const projects = [
     image: "https://res.cloudinary.com/dtkzxbcjx/image/upload/v1740156966/igvbvpgmgyzkbrthcdma.png",
     demo: 'https://spotify-react-component.vercel.app/',
     github: 'https://github.com/dhruv2311-dot/spotify-react-component',
-    videoId: '1FiO-1234567892'
+    videoId: '1FiO-1234567892' // Replace with your actual Google Drive file ID
   },
   {
     title: 'Tic-Tac-Toe',
@@ -765,7 +646,7 @@ export const projects = [
     image: "https://res.cloudinary.com/dtkzxbcjx/image/upload/v1740157368/gtsplesiovqz4emqthn2.png",
     demo: 'https://tic-tac-toe-sandy-two.vercel.app/',
     github: 'https://github.com/dhruv2311-dot/Tic-Tac-Toe',
-    videoId: '1FiO-1234567893'
+    videoId: '1FiO-1234567893' // Replace with your actual Google Drive file ID
   },
   {
     title: 'Purple',
@@ -774,7 +655,7 @@ export const projects = [
     image: "https://res.cloudinary.com/dtkzxbcjx/image/upload/v1739943602/bgrat7sxisqwumu4x1vn.png",
     demo: 'https://purple21.netlify.app/',
     github: 'https://github.com/dhruv2311-dot/PURPLE',
-    videoId: '1FiO-1234567894'
+    videoId: '1FiO-1234567894' // Replace with your actual Google Drive file ID
   },
   {
     title: 'PharmEasy',
@@ -783,7 +664,7 @@ export const projects = [
     image: "https://res.cloudinary.com/dtkzxbcjx/image/upload/v1739943561/y4vnpuulvuibf86l0dj9.png",
     demo: 'https://bespoke-blini-7c10e3.netlify.app/',
     github: 'https://github.com/dhruv2311-dot/pharmeasy',
-    videoId: '1FiO-1234567895'
+    videoId: '1FiO-1234567895' // Replace with your actual Google Drive file ID
   },
   {
     title: 'HireAVilla',
@@ -792,93 +673,38 @@ export const projects = [
     image: "https://res.cloudinary.com/dtkzxbcjx/image/upload/v1739943420/hireavilla_ag5gso.png",
     demo: 'https://hireavilla12.netlify.app/',
     github: 'https://github.com/dhruv2311-dot/HIREAVILLA',
-    videoId: '1FiO-1234567896'
+    videoId: '1FiO-1234567896' // Replace with your actual Google Drive file ID
   }
 ];
 
-
-export const figmaProjects = [
+const figmaProjects = [
   {
-    title: 'Eventura Design',
+    title: 'Eventura',
     description: 'A clean and modern dashboard interface design with white mode support.',
     tools: ['Figma', 'Auto Layout', 'Components', 'Variants'],
     image: 'https://res.cloudinary.com/dtkzxbcjx/image/upload/v1739943406/eventura_tuntzx.png',
     link: 'https://www.figma.com/design/VTpYgGhHaIuRfob33itg2p/codinggita?node-id=382-557&t=vtIPVwzy8GVvCr3a-1',
-    videoId: '1FiO-1234567897'
+    videoId: '1FiO-1234567897' // Replace with your actual Google Drive file ID
   },
   {
     title: 'Furnishly',
-    description: 'Furnishly features a sleek and intuitive interface with a focus on user experience. The design showcases high-quality furniture with well-organized categories, smooth navigation, and a visually appealing layout.',
+    description: 'Furnishly features a sleek and intuitive interface with a focus on user experience. The design showcases high-quality furniture with well-organized categories, smooth navigation, and a visually appealing layout. With a minimalist approach, it ensures a seamless shopping experience, incorporating detailed product views, price filters, and responsive elements for accessibility across devices. The elegant typography and balanced white space enhance readability, making browsing effortless and engaging.',
     tools: ['Figma', 'Auto Layout', 'Components', 'Variants'],
     image: 'https://res.cloudinary.com/dtkzxbcjx/image/upload/v1740253407/j0jnuta7tknmxkfrplka.jpg',
     link: 'https://www.figma.com/design/VTpYgGhHaIuRfob33itg2p/codinggita?node-id=124-532&t=vtIPVwzy8GVvCr3a-1',
-    videoId: '1FiO-1234567898'
+    videoId: '1FiO-1234567898' // Replace with your actual Google Drive file ID
   },
   {
-    title: 'CodingGita Website',
-    description: 'CodingGita is a well-structured and visually appealing website page design focused on delivering a seamless user experience. With a modern and intuitive layout, it ensures easy navigation and accessibility.',
+    title: 'codinggita',
+    description: 'CodingGita is a well-structured and visually appealing website page design focused on delivering a seamless user experience. With a modern and intuitive layout, it ensures easy navigation and accessibility. The design incorporates a balanced combination of typography, white space, and interactive elements, making it both engaging and functional. Whether for learning resources, coding tutorials, or tech-related content, CodingGita design enhances readability and usability, creating an efficient and smooth browsing experience.',
     tools: ['Figma', 'Auto Layout', 'Components', 'Variants'],
     image: 'https://res.cloudinary.com/dtkzxbcjx/image/upload/v1740253761/wfdtwsnrsexc4xkkumvw.png',
     link: 'https://www.figma.com/design/VTpYgGhHaIuRfob33itg2p/codinggita?node-id=138-5416&t=vtIPVwzy8GVvCr3a-1',
-    videoId: '1FiO-1234567899'
+    videoId: '1FiO-1234567899' // Replace with your actual Google Drive file ID
   },
+ 
 ];
-export const certificates = [
-  {
-    title: 'Advanced React Development',
-    issuer: 'Udemy',
-    date: 'May 2024',
-    description: 'Comprehensive course covering advanced React patterns, hooks, and state management strategies for building scalable applications.',
-    skills: ['React', 'Redux', 'Context API', 'React Hooks', 'Performance Optimization'],
-    image: 'https://res.cloudinary.com/dtkzxbcjx/image/upload/v1740391459/react-certificate_ndimsp.jpg',
-    fullImage: 'https://res.cloudinary.com/dtkzxbcjx/image/upload/v1740391459/react-certificate_ndimsp.jpg'
-  },
-  {
-    title: 'Full-Stack Web Development',
-    issuer: 'CodingGita',
-    date: 'March 2024',
-    description: 'Intensive bootcamp focusing on modern web technologies including MERN stack development and database design.',
-    skills: ['MongoDB', 'Express', 'React', 'Node.js', 'Authentication', 'RESTful APIs'],
-    image: 'https://res.cloudinary.com/dtkzxbcjx/image/upload/v1740391458/fullstack-certificate_g7tazm.jpg',
-    fullImage: 'https://res.cloudinary.com/dtkzxbcjx/image/upload/v1740391458/fullstack-certificate_g7tazm.jpg'
-  },
-  {
-    title: 'UI/UX Design Fundamentals',
-    issuer: 'Coursera',
-    date: 'January 2024',
-    description: 'Course covering core principles of user interface and experience design with a focus on creating intuitive and accessible designs.',
-    skills: ['Figma', 'Wireframing', 'Prototyping', 'User Research', 'Accessibility'],
-    image: 'https://res.cloudinary.com/dtkzxbcjx/image/upload/v1740391458/ui-ux-certificate_vx0j7c.jpg',
-    fullImage: 'https://res.cloudinary.com/dtkzxbcjx/image/upload/v1740391458/ui-ux-certificate_vx0j7c.jpg'
-  },
-  {
-    title: 'JavaScript Algorithms & Data Structures',
-    issuer: 'freeCodeCamp',
-    date: 'December 2023',
-    description: 'In-depth course on implementing efficient algorithms and data structures in JavaScript, with a focus on problem-solving techniques.',
-    skills: ['JavaScript', 'Data Structures', 'Algorithms', 'Problem Solving', 'Optimization'],
-    image: 'https://res.cloudinary.com/dtkzxbcjx/image/upload/v1740391458/js-algo-certificate_hmdnb5.jpg',
-    fullImage: 'https://res.cloudinary.com/dtkzxbcjx/image/upload/v1740391458/js-algo-certificate_hmdnb5.jpg'
-  },
-  {
-    title: 'Responsive Web Design',
-    issuer: 'freeCodeCamp',
-    date: 'October 2023',
-    description: 'Certification covering modern responsive design principles and techniques for building websites that work across all devices.',
-    skills: ['HTML5', 'CSS3', 'Flexbox', 'CSS Grid', 'Media Queries', 'Accessibility'],
-    image: 'https://res.cloudinary.com/dtkzxbcjx/image/upload/v1740391458/responsive-certificate_mpgcbs.jpg',
-    fullImage: 'https://res.cloudinary.com/dtkzxbcjx/image/upload/v1740391458/responsive-certificate_mpgcbs.jpg'
-  },
-  {
-    title: 'Backend Development & APIs',
-    issuer: 'Coursera',
-    date: 'September 2023',
-    description: 'Specialized course on building secure and scalable backend systems with a focus on RESTful API design and best practices.',
-    skills: ['Node.js', 'Express', 'RESTful APIs', 'Authentication', 'Database Integration'],
-    image: 'https://res.cloudinary.com/dtkzxbcjx/image/upload/v1740391458/backend-certificate_zhpbtq.jpg',
-    fullImage: 'https://res.cloudinary.com/dtkzxbcjx/image/upload/v1740391458/backend-certificate_zhpbtq.jpg'
-  }
-];
+
 const skillCategories = [
   {
     name: 'Frontend',
