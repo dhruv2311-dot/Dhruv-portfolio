@@ -416,24 +416,14 @@ const filteredProjects = projects.filter((project) => {
                       </span>
                     ))}
                   </div>
-                  <div className="flex flex-wrap space-x-4">
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center text-accent hover:underline"
-                    >
-                      <Figma size={16} className="mr-1" /> View in Figma
-                    </a>
-                    {project.videoId && (
-                      <button
-                        onClick={() => openVideo(project.videoId)}
-                        className="flex items-center text-accent hover:underline"
-                      >
-                        <Play size={16} className="mr-1" /> Demo Video
-                      </button>
-                    )}
-                  </div>
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center text-accent hover:underline"
+                  >
+                    <Figma size={16} className="mr-1" /> View in Figma
+                  </a>
                 </div>
               </motion.div>
             ))}
